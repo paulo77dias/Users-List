@@ -1,0 +1,73 @@
+<ap-header></ap-header>
+<div class="card-body text-center" id="tabela">
+  <div class=" mb-3 mt-3">
+    
+   
+   
+   
+    <input id="pesquisa" class="rounded" type="search" name="search" [(ngModel)]="searchText"  (keyup)="onSearchChange()" autocomplete="off" placeholder="search for a user by ">
+   
+    <select id="select" class="rounded  btn-primary"  (change)="changeCity($event)"    >
+    <option *ngFor="let search of searchtypes"  >
+      {{search.tipo}}
+     </option>
+    </select>
+    
+
+    
+   
+   
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Birth</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let usuario of usuariostest.slice(0,start) "  >
+
+        <td>{{usuario.name.first}} {{usuario.name.last}}</td>
+        <td>{{usuario.gender}}</td>
+        <td >{{usuario.dob.date}}</td>
+        <td>
+          <button type="submit" (click)="detalheUsuario(usuario)" class="btn btn-primary btn-block ">
+            Details
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ap-load-button (click)="start=start + 10" [start]="start" [usuarios]="usuarios.length"></ap-load-button>
+</div>
+
+
+
+<div id="popup" class="fixed-top ">
+  <div id="imagemUser" class="text-center">
+    <img [src]="usuarioPhoto">
+  </div>
+  <div class="card border-secondary mb-3" id="descricao">
+    <div id="fechar">
+      <span (click)="fecharDetalhes()" class="close">&times;</span>
+    </div>
+    <div  id="nome">
+      <p>{{usuarioDetalhe.name.first}} {{usuarioDetalhe.name.last}}</p>
+    </div>
+    <div class=" mt-3" >
+      <p>Email: {{usuarioDetalhe.email}}</p>
+      <p>Gender: {{usuarioDetalhe.gender}}</p>
+      <p>Birth: {{usuarioDetalhe.dob.date}}</p>
+      <p>Telephone: {{usuarioDetalhe.phone}}</p>
+      <p>Nationality: {{usuarioDetalhe.location.country}}</p>
+      <p>Address: {{usuarioDetalhe.location.street.name}}, {{usuarioDetalhe.location.street.number}} in
+        {{usuarioDetalhe.location.state}} </p>
+      <p>ID (Número de identificação): {{usuarioDetalhe.id.value}}</p>
+    </div>
+
+  </div>
+</div>

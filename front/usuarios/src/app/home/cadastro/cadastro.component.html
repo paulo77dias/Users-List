@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center h-100 mt-5">
+    <div class="card mt-5">
+        <div class="card-header">
+            <h4 class="text-center">Register </h4>
+        </div>
+        <div class="card-body mt-2">
+            <form [formGroup]="cadastroForm" class="form mt-4" (ngSubmit)="cadastrar()">
+                <div class="form-group">
+                    <input type="text" formControlName="cadastroUsername" placeholder="Username"
+                        class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" formControlName="cadastroUserEmail" placeholder="Email" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" formControlName="cadastroUserPassword" placeholder="password" class="form-control"   >
+                   
+                </div>
+
+                <div class="form-group">
+                    <input type="text" formControlName="cadastroUserConfirmPassword" placeholder="confirm password" class="form-control">
+                    
+                </div>
+
+
+                <button type="submit" [disabled]="!cadastroForm.valid" class="btn btn-primary btn-block">
+                    Register
+                </button>
+            </form>
+            <p>Already have an account ? <a [routerLink]="['/login']">Login</a></p>
+        </div>
+    </div>
+</div>
