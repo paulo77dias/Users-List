@@ -1,5 +1,5 @@
 # Users List
- List of users of a fictitious company
+ List of customers of a fictitious pharmacy
  
  
  How to run the application locally :
