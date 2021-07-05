@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'ap-load-button',
@@ -7,24 +7,27 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LoadButtonComponent implements OnInit {
 
-  @Input() hasMore: boolean = true;
-  @Input() start:any;
-  @Input() usuarios:any
+  @Input()hasMore!: boolean;
+  start:number = 10;
+  
 
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   ngOnInit() {
+   
     
-    console.log(this.usuarios)
   }
 
-  verificar(){
-    if (this.start == this.usuarios) {
-            this.hasMore = false;
-    } 
+  
+
+  
+
+  
       
     
-  }
+  
 
 }

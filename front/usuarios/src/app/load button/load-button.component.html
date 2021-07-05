@@ -1,7 +1,10 @@
-<div class="text-center mt-5"  *ngIf="hasMore; else messageTemplate">
-    <button (click)="verificar()" class="btn btn-primary">Load more</button>
+<div class="text-center mt-5" *ngIf="hasMore; else messageTemplate " >
+    <button  class="btn btn-primary">Load more</button>
 </div>
+
+
+  
   
   <ng-template #messageTemplate>
-    <p class="text-center text-muted mt-3">No more user to load</p>
+    <p  class="text-center text-muted mt-3">No more user to load</p>
   </ng-template>

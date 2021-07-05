@@ -29,7 +29,7 @@
       </tr>
     </thead>
     <tbody >
-      <tr *ngFor="let usuario of usuariostest.slice(0,start) "  >
+      <tr *ngFor="let usuario of usuariosShow.slice(0,start) "  >
 
         <td>{{usuario.name.first}} {{usuario.name.last}}</td>
         <td>{{usuario.gender}}</td>
@@ -42,7 +42,7 @@
       </tr>
     </tbody>
   </table>
-  <ap-load-button (click)="start=start + 10" [start]="start" [usuarios]="usuarios.length"></ap-load-button>
+  <ap-load-button (click)="start=start + 10" (click)="loadMore()" [hasMore]="hasMore"  ></ap-load-button>
 </div>
 
 

@@ -1,6 +1,7 @@
 
 import { UsuariosService } from './usuarios.service';
 import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
+import { LoadButtonComponent } from '../load button/load-button.component';
 
 
 interface Food {
@@ -17,7 +18,7 @@ interface Food {
 export class UsuariosComponent implements OnInit,OnChanges{
 
 
-    
+    hasMore = true
     searchtypes:any
     searchFilter = 'Name'
     condition:boolean=true
@@ -27,11 +28,15 @@ export class UsuariosComponent implements OnInit,OnChanges{
     filter :string= '';
     userFilter:any=[];
     usuarioPhoto:string='';
-    usuariostest:any ;
-    usuarios:any;
+
+    //usuarios filtardos pela pesquisa
+    usuariosShow:any ;
+
+    //todos os usuarios recebidos da api
+    allUsuarios:any;
 
 
-
+    // Informações mais detalhadas de um usuario
     usuarioDetalhe:any={
         name:{first:"",last:""},
         email:"",
@@ -48,14 +53,14 @@ export class UsuariosComponent implements OnInit,OnChanges{
 
 
     
-    constructor(private userService:UsuariosService ){}
+    constructor(private userService:UsuariosService, private bottomloadMore:LoadButtonComponent ){}
 
    
     
 
 
     ngOnChanges(changes: SimpleChanges): void {
-       
+       console.log(changes.hasMore)
        
     }
 
@@ -78,14 +83,16 @@ export class UsuariosComponent implements OnInit,OnChanges{
 
        this.userService.buscarUsuarios().subscribe(
            resposta => {
-           this.usuarios = resposta.results;
-           this.usuariostest = this.usuarios
-           for (var pos in this.usuarios) {
+           this.allUsuarios = resposta.results;
+          
+           for (var pos in this.allUsuarios) {
             //Recebe o atributo date
-            var data = this.usuarios[pos].dob.date;
+            var data = this.allUsuarios[pos].dob.date;
             //pega os 10 primeiros caracteres do atributo date
-            this.usuarios[pos].dob.date = data.substr(0, 10);
-           }}
+            this.allUsuarios[pos].dob.date = data.substr(0, 10);
+           }
+           this.usuariosShow = this.allUsuarios
+        }
          ,
          error=>{console.log(error)}
        );
@@ -96,6 +103,8 @@ export class UsuariosComponent implements OnInit,OnChanges{
             { tipo: 'Birth'},
             { tipo: 'Country'}
         ];
+
+      
      
     }
 
@@ -110,18 +119,19 @@ export class UsuariosComponent implements OnInit,OnChanges{
    
     
     onSearchChange(): void {  
+
        
-        console.log(this.searchFilter)
-        this.usuariostest = []
+        
+        this.usuariosShow = []
 
         switch (this.searchFilter) {
             case 'Name':
-                for (var pos in this.usuarios) {
-                    var nome = this.usuarios[pos].name.first + this.usuarios[pos].name.last
+                for (var pos in this.allUsuarios) {
+                    var nome = this.allUsuarios[pos].name.first + this.allUsuarios[pos].name.last
                     
                     if(nome.toUpperCase().includes(this.searchText.toUpperCase())){
                      
-                        this.usuariostest = this.usuariostest.concat(this.usuarios[pos])
+                        this.usuariosShow = this.usuariosShow.concat(this.allUsuarios[pos])
                     }
                  
                 
@@ -129,33 +139,37 @@ export class UsuariosComponent implements OnInit,OnChanges{
                 break;
 
             case 'Country':
-                for (var pos in this.usuarios) {
-                    var nome = this.usuarios[pos].location.country + this.usuarios[pos].location.country
+                for (var pos in this.allUsuarios) {
+                    var nome = this.allUsuarios[pos].location.country + this.allUsuarios[pos].location.country
                     
                     if(nome.toUpperCase().includes(this.searchText.toUpperCase())){
                      
-                        this.usuariostest = this.usuariostest.concat(this.usuarios[pos])
+                        this.usuariosShow = this.usuariosShow.concat(this.allUsuarios[pos])
                     }
                 }
                 break;
 
             case 'Birth':
-                for (var pos in this.usuarios) {
-                    var nome = this.usuarios[pos].dob.date + this.usuarios[pos].dob.date
+                for (var pos in this.allUsuarios) {
+                    var nome = this.allUsuarios[pos].dob.date + this.allUsuarios[pos].dob.date
                     
                     if(nome.includes(this.searchText)){
                      
-                        this.usuariostest = this.usuariostest.concat(this.usuarios[pos])
+                        this.usuariosShow = this.usuariosShow.concat(this.allUsuarios[pos])
                     }
                 }
                 break;
         }
+             
+      if (this.usuariosShow.length > 10) {
+          this.hasMore = true
           
+      }
            
             
          
               
-               console.log(this.usuariostest)
+               
             }  
         
     
@@ -181,15 +195,13 @@ export class UsuariosComponent implements OnInit,OnChanges{
 
     
     loadMore(){
-        this.userService.buscarUsuarios().subscribe(
-            resposta => {
-                
-                this.usuarios = this.usuarios.concat(resposta.results) 
-        }
-             
-         ,
-            error=>{console.log(error)}
-        )
+        console.log(this.usuariosShow)
+    console.log(this.start)
+      if (this.usuariosShow.length < 10 || this.start >= this.usuariosShow.length) {
+          this.hasMore = false
+          
+      }
+
     }
 
 
