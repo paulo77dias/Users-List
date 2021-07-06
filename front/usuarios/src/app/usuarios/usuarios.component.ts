@@ -15,14 +15,14 @@ interface Food {
     templateUrl:'./usuarios.component.html',
     styleUrls:['./usuarios.component.css']
 })
-export class UsuariosComponent implements OnInit,OnChanges{
+export class UsuariosComponent implements OnInit{
 
 
     hasMore = true
     searchtypes:any
     searchFilter = 'Name'
     condition:boolean=true
-    start = 10
+    start = 50
     value:string='';
     searchText='';
     filter :string= '';
@@ -34,6 +34,9 @@ export class UsuariosComponent implements OnInit,OnChanges{
 
     //todos os usuarios recebidos da api
     allUsuarios:any;
+
+    // usuarios escolhidos pelo genero
+    genderUsuarios:any;
 
 
     // Informações mais detalhadas de um usuario
@@ -50,27 +53,31 @@ export class UsuariosComponent implements OnInit,OnChanges{
     }
     
 
-
-
     
     constructor(private userService:UsuariosService, private bottomloadMore:LoadButtonComponent ){}
 
-   
-    
 
-
-    ngOnChanges(changes: SimpleChanges): void {
-       console.log(changes.hasMore)
-       
+    // valor do filtro de pesquisa
+    changeSearch(e:any) {
+        this.searchFilter = e.target.value
     }
 
 
-
-
-
-
-    changeCity(e:any) {
-        this.searchFilter = e.target.value
+    //escolha de genero dos usuarios
+    changeGender(e:any){
+        this.genderUsuarios = []
+        this.usuariosShow = []
+        console.log(e.target.value)
+        for (var pos in this.allUsuarios) {
+            var gender = this.allUsuarios[pos].gender 
+            console.log(this.allUsuarios[pos])
+            console.log(gender)
+            if(gender == e.target.value){
+                console.log("passou")
+                this.genderUsuarios = this.genderUsuarios.concat(this.allUsuarios[pos])
+            }
+        }
+           this.usuariosShow = this.genderUsuarios
     }
 
 
@@ -126,12 +133,12 @@ export class UsuariosComponent implements OnInit,OnChanges{
 
         switch (this.searchFilter) {
             case 'Name':
-                for (var pos in this.allUsuarios) {
-                    var nome = this.allUsuarios[pos].name.first + this.allUsuarios[pos].name.last
+                for (var pos in this.genderUsuarios) {
+                    var nome = this.genderUsuarios[pos].name.first + this.genderUsuarios[pos].name.last
                     
                     if(nome.toUpperCase().includes(this.searchText.toUpperCase())){
                      
-                        this.usuariosShow = this.usuariosShow.concat(this.allUsuarios[pos])
+                        this.usuariosShow = this.usuariosShow.concat(this.genderUsuarios[pos])
                     }
                  
                 
@@ -139,23 +146,23 @@ export class UsuariosComponent implements OnInit,OnChanges{
                 break;
 
             case 'Country':
-                for (var pos in this.allUsuarios) {
-                    var nome = this.allUsuarios[pos].location.country + this.allUsuarios[pos].location.country
+                for (var pos in this.genderUsuarios) {
+                    var nome = this.genderUsuarios[pos].location.country + this.genderUsuarios[pos].location.country
                     
                     if(nome.toUpperCase().includes(this.searchText.toUpperCase())){
                      
-                        this.usuariosShow = this.usuariosShow.concat(this.allUsuarios[pos])
+                        this.usuariosShow = this.usuariosShow.concat(this.genderUsuarios[pos])
                     }
                 }
                 break;
 
             case 'Birth':
-                for (var pos in this.allUsuarios) {
-                    var nome = this.allUsuarios[pos].dob.date + this.allUsuarios[pos].dob.date
+                for (var pos in this.genderUsuarios) {
+                    var nome = this.genderUsuarios[pos].dob.date + this.genderUsuarios[pos].dob.date
                     
                     if(nome.includes(this.searchText)){
                      
-                        this.usuariosShow = this.usuariosShow.concat(this.allUsuarios[pos])
+                        this.usuariosShow = this.usuariosShow.concat(this.genderUsuarios[pos])
                     }
                 }
                 break;
@@ -195,8 +202,7 @@ export class UsuariosComponent implements OnInit,OnChanges{
 
     
     loadMore(){
-        console.log(this.usuariosShow)
-    console.log(this.start)
+     
       if (this.usuariosShow.length < 10 || this.start >= this.usuariosShow.length) {
           this.hasMore = false
           

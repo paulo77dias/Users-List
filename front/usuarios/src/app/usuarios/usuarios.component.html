@@ -1,26 +1,25 @@
 <ap-header></ap-header>
-<div class="card-body text-center" id="tabela">
-  <div class=" mb-3 mt-3">
-    
-   
-   
-   
-    <input id="pesquisa" class="rounded" type="search" name="search" [(ngModel)]="searchText"  (keyup)="onSearchChange()" autocomplete="off" placeholder="search for a user by ">
-   
-    <select id="select" class="rounded  btn-primary"  (change)="changeCity($event)"    >
-    <option *ngFor="let search of searchtypes"  >
-      {{search.tipo}}
-     </option>
+<div class="card-body text-center " id="tabela">
+
+
+<div class="teste">
+  <div class=" mb-3 mt-5">
+
+    <button type="button"  value="male" (click)="changeGender($event)" class="rounded btn-primary ">Male</button>
+    <button type="button"  id="bottomGender" value="female" (click)="changeGender($event)" class="rounded btn-primary">Female</button>
+
+    <input id="pesquisa" class="rounded" type="search" name="search" [(ngModel)]="searchText" (keyup)="onSearchChange()"
+      autocomplete="off" placeholder="search for a user by ">
+    <select id="select" class="rounded  btn-primary" (change)="changeSearch($event)">
+      <option *ngFor="let search of searchtypes">
+        {{search.tipo}}
+      </option>
     </select>
-    
-
-    
-   
-   
   </div>
+</div>
 
-  <table class="table table-bordered">
-    <thead>
+  <table class="table table-bordered tableFixHead">
+    <thead class="fixed">
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Gender</th>
@@ -28,12 +27,12 @@
         <th scope="col">Actions</th>
       </tr>
     </thead>
-    <tbody >
-      <tr *ngFor="let usuario of usuariosShow.slice(0,start) "  >
+    <tbody>
+      <tr *ngFor="let usuario of usuariosShow.slice(0,start) ">
 
         <td>{{usuario.name.first}} {{usuario.name.last}}</td>
         <td>{{usuario.gender}}</td>
-        <td >{{usuario.dob.date}}</td>
+        <td>{{usuario.dob.date}}</td>
         <td>
           <button type="submit" (click)="detalheUsuario(usuario)" class="btn btn-primary btn-block ">
             Details
@@ -42,7 +41,7 @@
       </tr>
     </tbody>
   </table>
-  <ap-load-button (click)="start=start + 10" (click)="loadMore()" [hasMore]="hasMore"  ></ap-load-button>
+  <ap-load-button (click)="start=start + 50" (click)="loadMore()" [hasMore]="hasMore"></ap-load-button>
 </div>
 
 
@@ -55,10 +54,10 @@
     <div id="fechar">
       <span (click)="fecharDetalhes()" class="close">&times;</span>
     </div>
-    <div  id="nome">
+    <div id="nome">
       <p>{{usuarioDetalhe.name.first}} {{usuarioDetalhe.name.last}}</p>
     </div>
-    <div class=" mt-3" >
+    <div class=" mt-3">
       <p>Email: {{usuarioDetalhe.email}}</p>
       <p>Gender: {{usuarioDetalhe.gender}}</p>
       <p>Birth: {{usuarioDetalhe.dob.date}}</p>
