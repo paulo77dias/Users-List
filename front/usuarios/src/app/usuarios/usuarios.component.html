@@ -2,9 +2,10 @@
 <div class="card-body text-center " id="tabela">
 
 
-<div class="teste">
+<div class="searchfilters ">
   <div class=" mb-3 mt-5">
 
+    <button type="button"  value="all" (click)="changeGender($event)" class="rounded btn-primary ">All</button>
     <button type="button"  value="male" (click)="changeGender($event)" class="rounded btn-primary ">Male</button>
     <button type="button"  id="bottomGender" value="female" (click)="changeGender($event)" class="rounded btn-primary">Female</button>
 
@@ -46,7 +47,7 @@
 
 
 
-<div id="popup" class="fixed-top ">
+<div id="popup" class="fixed-top " >
   <div id="imagemUser" class="text-center">
     <img [src]="usuarioPhoto">
   </div>

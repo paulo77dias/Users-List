@@ -17,6 +17,7 @@ import { LoginService } from './home/login/login.service';
 import { LoadButtonComponent } from './load button/load-button.component';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { TokenService } from './token/token.service';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     UsuariosComponent,
     HeaderComponent,
     LoadButtonComponent,
+    
     
    
     
@@ -45,7 +47,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
    
     
   ],
-  providers: [CadastroService,LoginService,LoadButtonComponent],
+  providers: [CadastroService,LoginService,TokenService,LoadButtonComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

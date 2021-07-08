@@ -65,17 +65,17 @@ img{
       margin-top: 20px;
       margin-left: 35px;
   }
-  #dropdownMenuButton{
+  #dropdownMenuButton {
       
       position: relative;
       margin-right:10px;
   }
 
-  #select{
+  #select {
       margin-left: 20px;
   }
 
-  #bottomGender{
+  #bottomGender {
         margin-right: 20px;
         
   }
@@ -84,14 +84,15 @@ img{
       width: 165px;
   }
 
-  .teste button{
+  .searchfilters button {
     width: 100px;
+    margin-top: 20px;
   }
 
 
 /* cabeçalho da mesa fixado a partir da rolagem */
 
-.tableFixHead thead th { position: sticky; top: 8%; z-index: 1; }
+.tableFixHead thead th { position: sticky; top: 15%; z-index: 1; }
 /* Just common table stuff. Really. */
 
 

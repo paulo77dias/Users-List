@@ -1,10 +1,19 @@
-<header class="fixed-top border margin-2">
+<header >
+<div class="fixed-top bg-white">
+    <div class="navbar" id="listuser">
+        <P class="ml-3 mt-1 ">List of users</P>
+        <button type="submit" class="btn btn-primary mb-1" (click)="logout()">Logout</button>
+    </div>
+<div class=" border m-3">
     <nav class="navbar navbar-light bg-white">
         <h4 class="navbar-brand">
-            List of users
+            Pharm Inc
         </h4>
-        <button type="submit" class="btn btn-primary " (click)="logout()">Logout</button>
+        <p>User : {{nome}}</p>
+        
     </nav>
+</div>
+</div>
     
 
 

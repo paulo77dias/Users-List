@@ -67,6 +67,11 @@ export class UsuariosComponent implements OnInit{
     changeGender(e:any){
         this.genderUsuarios = []
         this.usuariosShow = []
+        if (e.target.value == "all") {
+            this.genderUsuarios = this.allUsuarios
+            this.usuariosShow = this.allUsuarios
+        }
+        else{
         console.log(e.target.value)
         for (var pos in this.allUsuarios) {
             var gender = this.allUsuarios[pos].gender 
@@ -77,7 +82,10 @@ export class UsuariosComponent implements OnInit{
                 this.genderUsuarios = this.genderUsuarios.concat(this.allUsuarios[pos])
             }
         }
-           this.usuariosShow = this.genderUsuarios
+        this.usuariosShow = this.genderUsuarios
+           
+        }
+        this.start = 50
     }
 
 
@@ -184,14 +192,19 @@ export class UsuariosComponent implements OnInit{
    
 
     detalheUsuario(usuario:any){
+        
         this.usuarioDetalhe = usuario
         this.usuarioPhoto = usuario.picture.large
         console.log(this.usuarioDetalhe);
+       
+        this.usuarioDetalhe = usuario
+        this.usuarioPhoto = usuario.picture.large
+        console.log(this.usuarioDetalhe);
+        setTimeout(() => {
+            (document.querySelector('#popup') as HTMLElement).style.display = "block";
+            (document.querySelector('#tabela') as HTMLElement).style.opacity = "0.2";
         
-        (document.querySelector('#popup') as HTMLElement).style.display = "block";
-        (document.querySelector('#tabela') as HTMLElement).style.opacity = "0.2";
-        
-        
+        }, 200);
     }
     
 
