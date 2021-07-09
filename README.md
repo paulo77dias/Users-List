@@ -9,8 +9,7 @@
     
    - In the path of the Users-list\ open other command terminal and type in sequence :
       * -> py -3 -m venv venv
-      * -> venv\Scripts\activate
-      // Inside environment
+      * -> venv\Scripts\activate ( create a virtual environment)
       * -> pip install Flask
       * -> pip install flask-jwt-extended
       * -> pip install -U flask-cors
