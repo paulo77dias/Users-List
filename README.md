@@ -3,7 +3,17 @@
  
  
  How to run the application locally :
-   - In the path of the Users-list\front\users folder open the command terminal and type:
-     * 1 - npm install 
-     * 2 - ng serve --open
+   - In the path of the Users-list\front\usuarios folder open the command terminal and type in sequence:
+     * 1 -> npm install 
+     * 2 -> ng serve --open
+    
+    - In the path of the Users-list open other command terminal and type in sequence :
+      * -> py -3 -m venv venv
+      * -> venv\Scripts\activate
+      // Inside environment
+      * -> pip install Flask
+      * -> pip install flask-jwt-extended
+      * -> pip install -U flask-cors
+      * -> set FLASK_APP=auth
+      * -> flask run 
   
