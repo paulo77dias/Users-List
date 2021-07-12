@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
                 ()=>{console.log("logado");
                     this.router.navigate(['/'])},
                 err => {
-                    console.log(err);
+                    alert("Usuario ou senha invalidos !")
+                    this.loginForm.reset()
                 }
             )
         }

@@ -1,53 +1,61 @@
-<ap-header></ap-header>
-<div class="card-body text-center " id="tabela">
-
-
-<div class="searchfilters ">
-  <div class=" mb-3 mt-5">
-
-    <button type="button"  value="all" (click)="changeGender($event)" class="rounded btn-primary ">All</button>
-    <button type="button"  value="male" (click)="changeGender($event)" class="rounded btn-primary ">Male</button>
-    <button type="button"  id="bottomGender" value="female" (click)="changeGender($event)" class="rounded btn-primary">Female</button>
-
-    <input id="pesquisa" class="rounded" type="search" name="search" [(ngModel)]="searchText" (keyup)="onSearchChange()"
-      autocomplete="off" placeholder="search for a user by ">
-    <select id="select" class="rounded  btn-primary" (change)="changeSearch($event)">
-      <option *ngFor="let search of searchtypes">
-        {{search.tipo}}
-      </option>
-    </select>
-  </div>
+<div id="header" >
+  <ap-header></ap-header>
 </div>
 
-  <table class="table table-bordered tableFixHead">
-    <thead class="fixed">
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Birth</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let usuario of usuariosShow.slice(0,start) ">
 
-        <td>{{usuario.name.first}} {{usuario.name.last}}</td>
-        <td>{{usuario.gender}}</td>
-        <td>{{usuario.dob.date}}</td>
-        <td>
-          <button type="submit" (click)="detalheUsuario(usuario)" class="btn btn-primary btn-block ">
-            Details
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="card-body text-center   " id="tabela">
+
+  <div class="searchfilters ">
+    <div class=" mb-3 mt-5">
+
+      <button type="button" value="all" (click)="changeGender($event)" class="rounded btn-primary ">All</button>
+      <button type="button" value="male" (click)="changeGender($event)" class="rounded btn-primary ">Male</button>
+      <button type="button" id="bottomGender" value="female" (click)="changeGender($event)"
+        class="rounded btn-primary">Female</button>
+
+      <input id="pesquisa" class="rounded" type="search" name="search" [(ngModel)]="searchText"
+        (keyup)="onSearchChange()" autocomplete="off" placeholder="search for a user by ">
+      <select id="select" class="rounded  btn-primary" (change)="changeSearch($event)">
+        <option *ngFor="let search of searchtypes">
+          {{search.tipo}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class=" table tableFixHead">
+    <table class="table table-bordered ">
+
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Birth</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let usuario of usuariosShow.slice(0,start) ">
+
+          <td>{{usuario.name.first}} {{usuario.name.last}}</td>
+          <td>{{usuario.gender}}</td>
+          <td>{{usuario.dob.date}}</td>
+          <td>
+            <button type="submit" (click)="detalheUsuario(usuario)" class="btn btn-primary btn-block ">
+              Details
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <ap-load-button (click)="start=start + 50" (click)="loadMore()" [hasMore]="hasMore"></ap-load-button>
 </div>
 
 
 
-<div id="popup" class="fixed-top " >
+<div id="popup" class="fixed-top ">
   <div id="imagemUser" class="text-center">
     <img [src]="usuarioPhoto">
   </div>
