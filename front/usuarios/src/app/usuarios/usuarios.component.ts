@@ -30,7 +30,7 @@ export class UsuariosComponent implements OnInit{
     usuarioPhoto:string='';
 
     //usuarios filtardos pela pesquisa
-    usuariosShow:any ;
+    usuariosShow!:any ;
 
     //todos os usuarios recebidos da api
     allUsuarios:any;
@@ -193,24 +193,28 @@ export class UsuariosComponent implements OnInit{
 
     detalheUsuario(usuario:any){
         
-        this.usuarioDetalhe = usuario
-        this.usuarioPhoto = usuario.picture.large
-        console.log(this.usuarioDetalhe);
+        
        
         this.usuarioDetalhe = usuario
         this.usuarioPhoto = usuario.picture.large
         console.log(this.usuarioDetalhe);
+
         setTimeout(() => {
+            
             (document.querySelector('#popup') as HTMLElement).style.display = "block";
-            (document.querySelector('#tabela') as HTMLElement).style.opacity = "0.2";
-        
+           (document.querySelector('#tabela') as HTMLElement).style.opacity = "0.2";
         }, 200);
+       
+        
+        
+        
     }
     
 
     fecharDetalhes(){
         (document.querySelector('#popup') as HTMLElement).style.display = "none";
         (document.querySelector('#tabela') as HTMLElement).style.opacity = "1.0";
+        this.usuarioPhoto = "";
     }
 
     

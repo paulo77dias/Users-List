@@ -11,7 +11,7 @@ export class UsuariosService{
     constructor( private http:HttpClient){}
 
     buscarUsuarios(){
-        return this.http.get<any>('https://randomuser.me/api/?results=50')
+        return this.http.get<any>('https://randomuser.me/api/?results=200')
            
         
     }
