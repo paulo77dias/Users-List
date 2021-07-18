@@ -19,11 +19,8 @@ Como rodar a aplicação localmente:
      * 2 -> ng serve --open
   
   - No caminho da pasta Users-list, abra o prompt de comando como administrador e digite :
-      * -> py -3 -m venv venv
+  - 
       * -> venv\Scripts\activate ( create a virtual environment)
-      * -> pip install Flask
-      * -> pip install flask-jwt-extended
-      * -> pip install -U flask-cors
       * -> set FLASK_APP=auth
       * -> flask run 
 
