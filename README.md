@@ -8,7 +8,7 @@ Este é um desafio disponibilizado pela Coodesh no qual se pede a criação de u
 
 Linguagens/frameworks usados:
  - Angular 12.0
- - Python 3.9.5 :  //É neccasaria a instalação do python 3.9.5 -> https://www.python.org/downloads/release/python-395/
+ - Python 3.9.5 :  //É necessária a instalação do python 3.9.5 -> https://www.python.org/downloads/release/python-395/
      * Flask
      * Flask-CORS
      * Flask-jwt-extended
