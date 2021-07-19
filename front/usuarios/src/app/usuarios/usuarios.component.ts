@@ -52,6 +52,7 @@ export class UsuariosComponent implements OnInit{
         id:{value:""}
     }
     
+    
 
     
     constructor(private userService:UsuariosService, private bottomloadMore:LoadButtonComponent ){}
@@ -72,19 +73,19 @@ export class UsuariosComponent implements OnInit{
             this.usuariosShow = this.allUsuarios
         }
         else{
-        console.log(e.target.value)
-        for (var pos in this.allUsuarios) {
-            var gender = this.allUsuarios[pos].gender 
-            console.log(this.allUsuarios[pos])
-            console.log(gender)
-            if(gender == e.target.value){
-                console.log("passou")
-                this.genderUsuarios = this.genderUsuarios.concat(this.allUsuarios[pos])
+       
+            for (var pos in this.allUsuarios) {
+                var gender = this.allUsuarios[pos].gender 
+                
+                if(gender == e.target.value){
+                    
+                    this.genderUsuarios = this.genderUsuarios.concat(this.allUsuarios[pos])
+                }
             }
-        }
-        this.usuariosShow = this.genderUsuarios
+            this.usuariosShow = this.genderUsuarios
            
         }
+        this.onSearchChange()
         this.start = 50
     }
 
@@ -107,11 +108,13 @@ export class UsuariosComponent implements OnInit{
             this.allUsuarios[pos].dob.date = data.substr(0, 10);
            }
            this.usuariosShow = this.allUsuarios
+           this.genderUsuarios = this.allUsuarios
         }
          ,
          error=>{console.log(error)}
        );
 
+       
 
         this.searchtypes = [
             { tipo: 'Name'},

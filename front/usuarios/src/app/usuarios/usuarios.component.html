@@ -3,24 +3,24 @@
 </div>
 
 
-<div class="card-body text-center   " id="tabela">
+<div class="card-body text-center " id="tabela">
 
-  <div class="searchfilters ">
-    <div class=" mb-3 mt-5">
+  <div class="searchfilters">
+    
 
-      <button type="button" value="all" (click)="changeGender($event)" class="rounded btn-primary ">All</button>
-      <button type="button" value="male" (click)="changeGender($event)" class="rounded btn-primary ">Male</button>
-      <button type="button" id="bottomGender" value="female" (click)="changeGender($event)"
-        class="rounded btn-primary">Female</button>
+      <button type="button" value="all" (click)="changeGender($event)" class="rounded btn-primary filtrostabela">All</button>
+      <button type="button" value="male" (click)="changeGender($event)" class="rounded btn-primary filtrostabela">Male</button>
+      <button type="button"  value="female" (click)="changeGender($event)"
+        class="rounded btn-primary filtrostabela">Female</button>
 
-      <input id="pesquisa" class="rounded" type="search" name="search" [(ngModel)]="searchText"
+      <input id="pesquisa" class="rounded filtrostabela" type="search" name="search" [(ngModel)]="searchText"
         (keyup)="onSearchChange()" autocomplete="off" placeholder="search for a user by ">
-      <select id="select" class="rounded  btn-primary" (change)="changeSearch($event)">
-        <option *ngFor="let search of searchtypes">
+      <select  class="rounded  btn-primary filtrostabela" (change)="changeSearch($event)" >
+        <option *ngFor="let search of searchtypes" >
           {{search.tipo}}
         </option>
       </select>
-    </div>
+    
   </div>
 
   <div class=" table tableFixHead">

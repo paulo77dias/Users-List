@@ -8,6 +8,7 @@
      margin-left: auto;
      margin-right: auto;
      width: 60%;
+     
  }  
    
 #popup{
@@ -67,34 +68,33 @@ img{
       margin-top: 20px;
       margin-left: 35px;
   }
-  #dropdownMenuButton {
-      
-      position: relative;
-      margin-right:10px;
-  }
-
-  #select {
-      margin-left: 20px;
-  }
+  
+ 
 
   #pesquisa{
       width: 165px;
   }
 
-  .searchfilters button {
+  .filtrostabela{
+    display: inline;
     width: 100px;
-    margin-top: 20px;
-    margin-right: 20px;
+    margin: 15px;
+  }
+
+  .searchfilters{
+      margin-top: 80px;
   }
 
 
 /* cabeçalho da mesa fixado a partir da rolagem */
 
-.tableFixHead thead tr  th{ position: sticky; top:133px; z-index: 1; }
+.tableFixHead thead tr  th{ position: sticky; top:133px; z-index: 1; padding-left: 10px;padding-right: 10px;}
 /* Just common table stuff. Really. */
 
 
-th { background:rgb(139, 135, 135);}
+
+
+th { background:rgb(139, 135, 135)}
 
   #header {
     background-color: white;
