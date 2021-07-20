@@ -2,6 +2,7 @@
 import { UsuariosService } from './usuarios.service';
 import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { LoadButtonComponent } from '../load button/load-button.component';
+import { User } from './user';
 
 
 interface Food {
@@ -19,7 +20,7 @@ export class UsuariosComponent implements OnInit{
 
 
     hasMore = true
-    searchtypes:any
+    searchtypes:any 
     searchFilter = 'Name'
     condition:boolean=true
     start = 50
@@ -28,6 +29,7 @@ export class UsuariosComponent implements OnInit{
     filter :string= '';
     userFilter:any=[];
     usuarioPhoto:string='';
+    gender = "all"
 
     //usuarios filtardos pela pesquisa
     usuariosShow!:any ;
@@ -51,7 +53,8 @@ export class UsuariosComponent implements OnInit{
         },
         id:{value:""}
     }
-    
+
+    teste!:User
     
 
     
@@ -61,6 +64,7 @@ export class UsuariosComponent implements OnInit{
     // valor do filtro de pesquisa
     changeSearch(e:any) {
         this.searchFilter = e.target.value
+        
     }
 
 
@@ -68,25 +72,27 @@ export class UsuariosComponent implements OnInit{
     changeGender(e:any){
         this.genderUsuarios = []
         this.usuariosShow = []
+        this.gender = e.target.value
         if (e.target.value == "all") {
             this.genderUsuarios = this.allUsuarios
             this.usuariosShow = this.allUsuarios
         }
         else{
-       
-            for (var pos in this.allUsuarios) {
-                var gender = this.allUsuarios[pos].gender 
-                
-                if(gender == e.target.value){
-                    
-                    this.genderUsuarios = this.genderUsuarios.concat(this.allUsuarios[pos])
-                }
+        console.log(e.target.value)
+        for (var pos in this.allUsuarios) {
+            var gender = this.allUsuarios[pos].gender 
+            console.log(this.allUsuarios[pos])
+            console.log(gender)
+            if(gender == e.target.value){
+                console.log("passou")
+                this.genderUsuarios = this.genderUsuarios.concat(this.allUsuarios[pos])
             }
-            this.usuariosShow = this.genderUsuarios
-           
         }
-        this.onSearchChange()
+        this.usuariosShow = this.genderUsuarios
+        
+        }
         this.start = 50
+        this.onSearchChange()
     }
 
 
@@ -97,7 +103,7 @@ export class UsuariosComponent implements OnInit{
 
     ngOnInit() {
 
-       this.userService.buscarUsuarios().subscribe(
+        this.userService.buscarUsuarios().subscribe(
            resposta => {
            this.allUsuarios = resposta.results;
           
@@ -109,14 +115,14 @@ export class UsuariosComponent implements OnInit{
            }
            this.usuariosShow = this.allUsuarios
            this.genderUsuarios = this.allUsuarios
+           
         }
          ,
          error=>{console.log(error)}
-       );
 
-       
 
-        this.searchtypes = [
+        );
+         this.searchtypes = [
             { tipo: 'Name'},
             { tipo: 'Birth'},
             { tipo: 'Country'}

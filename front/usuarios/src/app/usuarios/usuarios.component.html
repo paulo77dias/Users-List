@@ -8,10 +8,10 @@
   <div class="searchfilters">
     
 
-      <button type="button" value="all" (click)="changeGender($event)" class="rounded btn-primary filtrostabela">All</button>
-      <button type="button" value="male" (click)="changeGender($event)" class="rounded btn-primary filtrostabela">Male</button>
-      <button type="button"  value="female" (click)="changeGender($event)"
-        class="rounded btn-primary filtrostabela">Female</button>
+      <button type="button" value="all" (click)="changeGender($event)" class="rounded  filtrostabelabottom" [class.corbootomGender]="gender === 'all'">All</button>
+      <button type="button" value="male" (click)="changeGender($event)" class="rounded  filtrostabelabottom" [class.corbootomGender]="gender === 'male'">Male</button>
+      <button type="button"  value="female" (click)="changeGender($event)" [class.corbootomGender]="gender === 'female'"
+        class="rounded  filtrostabelabottom">Female</button>
 
       <input id="pesquisa" class="rounded filtrostabela" type="search" name="search" [(ngModel)]="searchText"
         (keyup)="onSearchChange()" autocomplete="off" placeholder="search for a user by ">
@@ -79,3 +79,4 @@
 
   </div>
 </div>
+
