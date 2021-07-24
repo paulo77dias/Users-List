@@ -15,14 +15,14 @@ Linguagens/frameworks usados:
      
 Como rodar a aplicação localmente:
   - No caminho da pasta Users-list\front\usuarios, abra o prompt de comando como administrador e digite :
-     * 1 -> npm install 
-     * 2 -> ng serve --open
+      - npm install 
+      - ng serve --open
   
   - No caminho da pasta Users-list, abra o prompt de comando como administrador e digite :
-  - 
-      * -> venv\Scripts\activate ( create a virtual environment)
-      * -> set FLASK_APP=auth
-      * -> flask run 
+  
+       - venv\Scripts\activate ( create a virtual environment)
+       - set FLASK_APP=auth
+       - flask run 
 
 
 
@@ -48,15 +48,15 @@ This is a challenge made available by Coodesh in , which asks for the creation o
 
  How to run the application locally :
    - In the path of the Users-list\front\usuarios folder, open the command terminal as administrator and type in sequence:
-   - 
-     * 1 -> npm install 
-     * 2 -> ng serve --open
+    
+      - npm install 
+      - ng serve --open
     
    - In the path of the Users-list\ open other command terminal as administrator and type in sequence :
      
-      * -> venv\Scripts\activate ( create a virtual environment)
-      * -> set FLASK_APP=auth
-      * -> flask run 
+      - venv\Scripts\activate ( create a virtual environment)
+      - set FLASK_APP=auth
+      - flask run 
   
   
   
